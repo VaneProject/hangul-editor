@@ -1,0 +1,85 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'signing'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src']
+        }
+    }
+}
+
+group = 'io.github.vaneproject'
+version = '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'io.github.vaneproject'
+            artifactId = 'hanguleditor'
+            version = '1.0.0'
+            from components.java
+
+            pom {
+                name = 'HangulEditor'
+                description = 'Hangul Editor Library'
+                url = 'https://github.com/VaneProject/hangul-editor'
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'PersesTitan'
+                        name = 'PersesTitan'
+                        email = 'ToramPersesTitan@gmail.com'
+                        organization = "VaneProject"
+                        organizationUrl = 'https://github.com/VaneProject'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git:github.com/VaneProject/hangul-editor.git'
+                    developerConnection = 'scm:git:ssh://github.com/VaneProject/hangul-editor.git'
+                    url = 'https://github.com/VaneProject/hangul-editor'
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "OSSRH"
+            url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            credentials {
+                username = project.properties["username"]
+                password = project.properties["password"]
+            }
+        }
+    }
+}
+
+signing {
+    sign publishing.publications.mavenJava
+}
+
+
+javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
