@@ -29,6 +29,16 @@ public final class HangulEditor {
         return ('ㄱ' <= word && word <= 'ㅣ') || ('가' <= word && word <= '힣');
     }
 
+    // 자음 인지 확인 (ㄱ, ㄴ, ㄷ, ㄹ, ...)
+    public static boolean isConsonant(char word) {
+        return 'ㄱ' <= word && word <= 'ㅎ';
+    }
+
+    // 모음 인지 확인 (ㅏ, ㅑ, ㅓ, ㅕ, ...)
+    public static boolean isVowels(char word) {
+        return 'ㅏ' <= word && word <= 'ㅣ';
+    }
+
     // 한글 램던 함수
     public static String randomHangul(int len) {
         Random random = new Random();

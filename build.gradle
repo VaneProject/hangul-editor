@@ -4,13 +4,13 @@ plugins {
     id 'signing'
 }
 
-sourceSets {
-    main {
-        java {
-            srcDirs = ['src']
-        }
-    }
-}
+//sourceSets {
+//    main {
+//        java {
+//            srcDirs = ['src']
+//        }
+//    }
+//}
 
 group = 'io.github.vaneproject'
 version = '1.0.0'
@@ -40,7 +40,7 @@ publishing {
                 licenses {
                     license {
                         name = 'MIT License'
-                        url = 'https://opensource.org/licenses/MIT'
+                        url = 'https://github.com/VaneProject/hangul-editor/blob/master/LICENSE'
                     }
                 }
                 developers {
@@ -66,8 +66,8 @@ publishing {
             name = "OSSRH"
             url = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
             credentials {
-                username = project.properties["username"]
-                password = project.properties["password"]
+                username = project.properties["ossrhUsername"]
+                password = project.properties["ossrhPassword"]
             }
         }
     }

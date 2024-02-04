@@ -66,7 +66,21 @@ public final class HangulSplitItem {
         return threadWords.indexOf(text);
     }
 
-    // 프로퍼티 Getter Setter
+    public static char getThread(char words) {
+        int text = words - 0xAC00;
+        int p1 = text / 28 / 21, p3 = text % 28;
+        return 0 <= p1 && p1 < threadWords.size() ? threadWords.get(p3) : ' ';
+    }
+
+    public boolean isConsonant() {
+        return second == ' ' && thread == ' ' && HangulEditor.isConsonant(first);
+    }
+
+    public boolean isVowels() {
+        return second == ' ' && thread == ' ' && HangulEditor.isVowels(first);
+    }
+
+    // Property Getter Setter
     public void setFirst(char first) {
         this.first = first;
     }
